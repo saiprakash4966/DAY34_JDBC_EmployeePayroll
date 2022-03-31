@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.awt.Window.Type;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import com.bl.EmployeePayrollDBService.StatementType;
@@ -92,4 +93,17 @@ public class EmployeePayrollTest
 		System.out.println(employeePayrollData);
 	}
 
+	// UC6
+	@Test
+	/**
+	 * to test When Average Salary Retrieved By Gender Should Return Proper Value
+	 */
+	public void givenPayrollData_WhenAverageSalaryRetrievedByGender_ShouldReturnProperValue() {
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+		employeePayrollService.readData(IOService.DB_IO);
+		Map<String, Double> averageSalaryByGender = employeePayrollService.readAverageSalaryByGender(IOService.DB_IO);
+		System.out.println(averageSalaryByGender);
+		assertTrue(
+				averageSalaryByGender.get("M").equals(250000.0) && averageSalaryByGender.get("F").equals(3000000.0));
+	}
 }
