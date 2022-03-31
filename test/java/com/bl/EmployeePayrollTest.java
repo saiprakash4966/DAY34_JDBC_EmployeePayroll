@@ -74,4 +74,22 @@ public class EmployeePayrollTest
 		assertTrue(result);
 		System.out.println(employeePayrollData);
 	}
+
+	@Test
+	/**
+	 * To test whether the count of the retrieved data who have joined in a
+	 * particular data range matches with the expected value
+	 * 
+	 * @throws EmployeePayrollException
+	 */
+	public void givenDateRangeForEmployee_WhenRetrievedUsingStatement_ShouldReturnProperData()
+			throws EmployeePayrollException {
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+		List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData(IOService.DB_IO);
+		List<EmployeePayrollData> employeeDataInGivenDateRange = employeePayrollService
+				.getEmployeesInDateRange("2018-01-01", "2019-11-15");
+		assertEquals(2, employeeDataInGivenDateRange.size());
+		System.out.println(employeePayrollData);
+	}
+
 }
