@@ -32,17 +32,29 @@ public class EmployeePayrollTest
 
 	@Test
 	/**
-	 * created test method to match the employeeCount
+	 * To check the count in database is matching in java program or not
 	 */
 	public void givenEmployeePayrollInDB_WhenRetrieved_ShouldMatchEmployeeCount() {
-
-		/**
-		 * Creating object for EmployeePayRollService Class
-		 */
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
 		List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData(IOService.DB_IO);
 		assertEquals(3, employeePayrollData.size());
 	}
+
+	@Test
+	/**
+	 * To check whether the salary is updated in the database and is synced with the
+	 * DB
+	 * 
+	 * @throws EmployeePayrollException
+	 */
+	public void givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDatabase() throws EmployeePayrollException {
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+		List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData(IOService.DB_IO);
+		employeePayrollService.updateEmployeeSalary("Mark Zuckerberg", 3000000.00);
+		boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Mark Zuckerberg");
+		assertTrue(result);
+		System.out.println(employeePayrollData);
+	}	
 }
 
 

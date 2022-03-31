@@ -74,5 +74,4 @@ public class DBdemo
 			System.out.println("   " + driverClass.getClass().getName());
 		}
 	}
-
 }
