@@ -3,7 +3,7 @@ package com.bl;
 import java.time.LocalDate;
 
 public class EmployeePayrollData
-{
+ {
 	
 	/**
 	 * Declaring variables
