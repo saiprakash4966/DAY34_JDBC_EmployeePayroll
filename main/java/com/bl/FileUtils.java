@@ -4,6 +4,7 @@ import java.io.File;
 
 public class FileUtils 
 {
+
 	/**
 	 * created boolean method deleteFiles for deleting files
 	 * 
@@ -19,5 +20,4 @@ public class FileUtils
 		}
 		return contentsToDelete.delete();
 	}
-
 }

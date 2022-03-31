@@ -3,15 +3,17 @@ package com.bl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Window.Type;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
+import com.bl.EmployeePayrollDBService.StatementType;
 import com.bl.EmployeePayrollService.IOService;
 
 public class EmployeePayrollTest 
 {
+
 	@Test
 	/**
 	 * created test method to match the entries
@@ -50,11 +52,26 @@ public class EmployeePayrollTest
 	public void givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDatabase() throws EmployeePayrollException {
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
 		List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData(IOService.DB_IO);
-		employeePayrollService.updateEmployeeSalary("Mark Zuckerberg", 3000000.00);
+		employeePayrollService.updateEmployeeSalary("Mark Zuckerberg", 3000000.00, StatementType.STATEMENT);
 		boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Mark Zuckerberg");
 		assertTrue(result);
 		System.out.println(employeePayrollData);
-	}	
+	}
+
+	@Test
+	/**
+	 * To test whether the salary is updated in the database and is synced with the
+	 * DB using JDBC PreparedStatement
+	 * 
+	 * @throws EmployeePayrollException
+	 */
+	public void givenNewSalaryForEmployee_WhenUpdatedUsingPreparedStatement_ShouldSyncWithDatabase()
+			throws EmployeePayrollException {
+		EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+		List<EmployeePayrollData> employeePayrollData = employeePayrollService.readData(IOService.DB_IO);
+		employeePayrollService.updateEmployeeSalary("Mark Zuckerberg", 3000000.00, StatementType.PREPARED_STATEMENT);
+		boolean result = employeePayrollService.checkEmployeePayrollInSyncWithDB("Mark Zuckerberg");
+		assertTrue(result);
+		System.out.println(employeePayrollData);
+	}
 }
-
-

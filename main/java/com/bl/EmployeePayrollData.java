@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class EmployeePayrollData
 {
+	
 	/**
 	 * Declaring variables
 	 */
@@ -50,6 +51,5 @@ public class EmployeePayrollData
 		EmployeePayrollData that = (EmployeePayrollData) o;
 		return id == that.id && Double.compare(that.salary, salary) == 0 && name.equals(that.name);
 	}
-
 
 }
